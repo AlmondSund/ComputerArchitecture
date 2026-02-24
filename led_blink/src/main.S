@@ -15,7 +15,6 @@
 .equ RCC_AHB2ENR,    (RCC_BASE + 0x4C)
 .equ RCC_APB1ENR1,   (RCC_BASE + 0x58)
 
-/* Si tu placa usa otra HSE, cambia esto */
 .equ HSE_VALUE_HZ,   8000000
 .equ HSI16_VALUE_HZ, 16000000
 
