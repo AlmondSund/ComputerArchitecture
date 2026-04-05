@@ -76,7 +76,6 @@ int main(void)
      * Initialize shield LED driver first so GPIO state is deterministic before
      * timers start generating update events.
      */
-    mfs_led_driver_init();
     mfs_led_all_off();
 
     blink_channels_init();
