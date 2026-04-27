@@ -1,0 +1,21 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include <stdint.h>
+
+#define DISPLAY_WIDTH 4U
+#define LED_COUNT 4U
+#define BUTTON_QUEUE_CAPACITY 8U
+
+#define APP_TICK_MS 20U
+#define INPUT_SCAN_MS 1U
+#define DISPLAY_REFRESH_MS 1U
+#define BUTTON_DEBOUNCE_MS 20U
+#define DISPLAY_PAGE_MS 700U
+#define SELECT_HOLD_MS 600U
+
+#define BRIGHTNESS_PERCENT_MAX 100U
+#define BRIGHTNESS_STEP_PERCENT 5U
+#define LED_PWM_MAX 255U
+
+#endif

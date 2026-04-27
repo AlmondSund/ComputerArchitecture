@@ -1,0 +1,13 @@
+#ifndef BSP_BOARD_H
+#define BSP_BOARD_H
+
+#include "stm32l4xx_hal.h"
+
+#define BSP_LED_PWM_GPIO_PORT GPIOA
+#define BSP_LED_PWM_GPIO_PIN GPIO_PIN_5
+#define BSP_LED_PWM_GPIO_AF GPIO_AF1_TIM2
+
+#define BSP_LED_PWM_TIM TIM2
+#define BSP_LED_PWM_TIM_CHANNEL TIM_CHANNEL_1
+
+#endif /* BSP_BOARD_H */

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "led_blink_fade",
+			"path": "."
+		}
+	],
+	"settings": {
+		"stm32cube-ide-clangd.path": "cube"
+	}
+}
