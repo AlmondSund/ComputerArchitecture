@@ -1,0 +1,21 @@
+flowchart LR
+    SysTick[SysTick ISR<br/>1 ms tick]
+    Main[Main loop<br/>time checks]
+    Sleep[__WFI()<br/>sleep until interrupt]
+    Scan[Every 2 ms<br/>scan one digit]
+    Snapshot[Every 250 ms<br/>read snapshot]
+    Report[Every 1000 ms<br/>serial report]
+    Display[Display<br/>text buffer]
+    ADC[ADC1 + DMA<br/>latest buffer]
+    UART[USART2 TX<br/>diagnostic line]
+
+    SysTick --> Main
+    Main --> Scan --> Display
+    Main --> Snapshot
+    Snapshot <--> ADC
+    Snapshot --> Display
+    Main --> Report
+    Report --> ADC
+    Report --> UART
+    Main --> Sleep
+    Sleep --> SysTick

@@ -1,0 +1,26 @@
+flowchart LR
+    subgraph Init[Initialization]
+        Start[Boot and enable DMA1/ADC clocks]
+        Regulator[Power ADC regulator; enable TS and VREFINT]
+        Calibrate[Run ADC self-calibration]
+        Configure[Configure DMA Ch1 and CH17, CH0 scan]
+        StartADC[Start continuous ADC conversion]
+        Start --> Regulator --> Calibrate --> Configure --> StartADC
+    end
+
+    subgraph Runtime[Runtime data path]
+        Buffer[DMA circular buffer: 16 two-sample pairs]
+        Average[Average raw temperature and VREFINT]
+        Vdda[Estimate VDDA from VREFINT calibration]
+        Temp[Normalize sensor code and interpolate]
+        Outputs[Update display and UART telemetry]
+        Buffer --> Average --> Vdda --> Temp --> Outputs
+    end
+
+    subgraph FaultPath[Fault path]
+        Faults[ADC overrun or DMA transfer error]
+    end
+
+    StartADC --> Buffer
+    StartADC -. interrupt/error path .-> Faults
+    Faults --> Outputs

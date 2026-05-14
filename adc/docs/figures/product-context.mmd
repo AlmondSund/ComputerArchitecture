@@ -1,0 +1,30 @@
+flowchart LR
+    subgraph Hardware[Board hardware]
+        Power[USB power through ST-LINK]
+        Board[NUCLEO-L476RG board]
+        MCU[STM32L476RG MCU]
+        Power --> Board --> MCU
+    end
+
+    subgraph Internal[MCU internal measurement path]
+        TS[Internal temperature sensor]
+        VREF[VREFINT bandgap reference]
+        ADC[ADC1 regular scan sequencer]
+        DMA[DMA1 Channel 1 circular buffer]
+        Math[Calibration and temperature computation]
+        TS --> ADC
+        VREF --> ADC
+        ADC --> DMA --> Math
+    end
+
+    subgraph Outputs[Human-visible outputs]
+        Display[Multi-Function Shield 4-digit display]
+        Serial[USART2 ST-LINK virtual COM port]
+        User[User / lab observer]
+        Display --> User
+        Serial --> User
+    end
+
+    MCU --> ADC
+    Math --> Display
+    Math --> Serial
