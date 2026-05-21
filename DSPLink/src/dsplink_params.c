@@ -13,8 +13,7 @@ dsplink_output_control_t dsplink_params_set_output_enabled(
     uint16_t updated;
     uint16_t verified = 0U;
     dsplink_output_control_t result = {false, false, 0U};
-    const uint16_t pass_mask = (uint16_t)(DSPLINK_ADAU1701_CORE_ADC_PASS
-                                         | DSPLINK_ADAU1701_CORE_DAC_PASS);
+    const uint16_t pass_mask = DSPLINK_ADAU1701_CORE_ANALOG_PASS_MASK;
 
     if (dsplink_bus_adau1701_read_u16(
                 address_7bit,

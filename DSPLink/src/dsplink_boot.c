@@ -70,8 +70,7 @@ dsplink_boot_result_t dsplink_boot_tsa1701(void)
     {
         const uint16_t target_core =
                 (uint16_t)(scan.dsp_core_control
-                           | DSPLINK_ADAU1701_CORE_ADC_PASS
-                           | DSPLINK_ADAU1701_CORE_DAC_PASS);
+                           | DSPLINK_ADAU1701_CORE_ANALOG_PASS_MASK);
         const dsplink_bus_status_t write_status =
                 dsplink_bus_adau1701_write_u16(
                     scan.adau1701_address,
@@ -87,8 +86,8 @@ dsplink_boot_result_t dsplink_boot_tsa1701(void)
         result.core_control_ok =
                 (write_status == DSPLINK_BUS_OK)
                 && (verify_status == DSPLINK_BUS_OK)
-                && ((core_after & DSPLINK_ADAU1701_CORE_ADC_PASS) != 0U)
-                && ((core_after & DSPLINK_ADAU1701_CORE_DAC_PASS) != 0U);
+                && ((core_after & DSPLINK_ADAU1701_CORE_ANALOG_PASS_MASK)
+                    == DSPLINK_ADAU1701_CORE_ANALOG_PASS_MASK);
     }
 
     result.ready = result.dac_config_ok && result.core_control_ok;
